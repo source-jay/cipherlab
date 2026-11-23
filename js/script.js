@@ -263,10 +263,10 @@
     $$(".page-view").forEach(v => v.classList.toggle("active", v.id === `${view}-view`));
     $("#breadcrumb-current").textContent = view.toUpperCase();
   }));
-  $$(".algorithm-tab").forEach(button => button.addEventListener("click", () => setAlgorithm(button.dataset.algorithm)));
-  $$(".mode-button").forEach(button => button.addEventListener("click", () => {
+  $$(".algorithm-tab[data-algorithm]").forEach(button => button.addEventListener("click", () => setAlgorithm(button.dataset.algorithm)));
+  $$(".mode-button[data-mode]").forEach(button => button.addEventListener("click", () => {
     state.mode = button.dataset.mode;
-    $$(".mode-button").forEach(b => b.classList.toggle("active", b === button));
+    $$(".mode-button[data-mode]").forEach(b => b.classList.toggle("active", b === button));
     $("#resultLabel").textContent = state.mode === "encrypt" ? "ENCRYPTED OUTPUT" : "DECRYPTED OUTPUT";
     resetOutput();
   }));
@@ -293,6 +293,16 @@
   });
   $("#analyzeFrequency").addEventListener("click", analyzeFrequency);
   $("#clearHistory").addEventListener("click", () => { state.history = []; renderHistory(); toast("Session history cleared."); });
+
+  // Shared UI helpers for the public-key modules (RSA / DSA).
+  window.CipherLab = {
+    escapeHTML, toast,
+    addHistoryEntry(algorithm, mode, source, result) {
+      state.history.unshift({algorithm, mode, source, result, time: new Date().toLocaleTimeString()});
+      state.history = state.history.slice(0, 20);
+      renderHistory();
+    }
+  };
 
   updateCount(); updateAlphabetPreview(); renderHistory();
   log("CipherLab engine initialized.");

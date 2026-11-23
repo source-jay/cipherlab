@@ -1,0 +1,81 @@
+/* CipherLab — public-key modules (RSA / DSA). Builds on style.css tokens and components. */
+.algorithm-tabs{flex-wrap:wrap}
+.pk-module{animation:fadeIn .3s ease}
+
+/* Module notice strip */
+.pk-notice{display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px solid var(--line);background:#09110c;padding:10px 13px;margin-bottom:15px;font:10px/1.6 var(--mono);color:var(--dim)}
+.pk-notice b{color:var(--green);font-weight:600}
+.notice-tag{color:var(--green);border:1px solid #2c5739;padding:3px 7px;font-size:9px;letter-spacing:1px;white-space:nowrap}
+.engine-chip{margin-left:auto;font:9px var(--mono);color:#8da494;border:1px solid var(--line2);padding:5px 9px;white-space:nowrap}
+.engine-chip.offline{color:var(--red);border-color:#5a2a2d}
+.engine-chip.offline .status-dot{background:var(--red);box-shadow:0 0 9px var(--red)}
+
+/* Key management */
+.mode-row.tight{margin:0 0 14px}
+.wide-button{width:100%;padding:11px 10px;margin-bottom:6px}
+.wide-button:disabled{opacity:.5;cursor:wait}
+.key-row{margin-top:13px}
+.key-row label{margin:0}
+.key-box{min-height:88px;font-size:10px;line-height:1.5;margin-top:8px;word-break:break-all}
+.key-box.masked{filter:blur(4px);user-select:none}
+.key-box.masked:focus{filter:none;user-select:text}
+.action-group{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+
+/* Output */
+.pk-module .result-text{font-size:12px;line-height:1.7;max-height:180px;overflow-y:auto;word-break:break-all}
+.sig-components{display:grid;gap:5px;margin:0 0 12px}
+.sig-row{display:grid;grid-template-columns:62px 1fr;gap:8px;font:9px/1.6 var(--mono);color:#8fa394}
+.sig-row span:first-child{color:#69a67a}
+.sig-row span:last-child{word-break:break-all;color:var(--dim)}
+.verdict{border:1px solid;padding:16px;margin-bottom:12px;display:flex;align-items:center;gap:13px;font:600 15px var(--mono);letter-spacing:1px;animation:fadeIn .3s ease}
+.verdict small{display:block;font:400 9px/1.6 var(--mono);letter-spacing:.3px;margin-top:4px;color:var(--dim)}
+.verdict .verdict-icon{font-size:26px}
+.verdict.valid{border-color:#3f8a55;background:#102018;color:var(--green);box-shadow:0 0 20px #48d87515}
+.verdict.invalid{border-color:#6e3034;background:#1a0e0f;color:var(--red);box-shadow:0 0 20px #ff6d7212}
+
+/* Walkthrough */
+.edu-banner{font:10px/1.6 var(--mono);color:#a9bcae;border-left:2px solid #d4af55;background:#14130b;padding:9px 12px;margin-bottom:13px}
+.edu-banner b{color:#d4af55;font-weight:600;margin-right:6px;letter-spacing:.6px}
+.walk-config{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;margin-bottom:6px}
+.walk-config>div{min-width:110px}
+.walk-config label{margin-bottom:7px}
+.walk-grow{flex:1;min-width:180px}
+.walk-config .outline-button{padding:10px 12px}
+.select-input{width:100%;background:#080e0b;border:1px solid #20372a;color:var(--green);padding:9px;font:11px var(--mono);outline:none}
+.select-input:focus{border-color:#4e9a62}
+.text-input.plain{text-transform:none}
+.math-stage{min-height:190px}
+.math-title{font:600 10px var(--mono);letter-spacing:1px;color:#c6d7ca;margin-bottom:12px}
+.math-title span{color:var(--green);margin-right:8px}
+.eq-line{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;padding:7px 0;border-bottom:1px dashed #1b3023;font:12px/1.6 var(--mono);color:#a9bcae;opacity:0;animation:eqIn .45s ease forwards}
+.eq-line:last-child{border-bottom:0}
+.eq-label{width:118px;flex:0 0 118px;font-size:9px;letter-spacing:.8px;color:#69a67a}
+.eq{color:#dce9df}
+.eq .hl{color:var(--green);background:#14351f;padding:0 4px;border:1px solid #2c5739}
+.eq .op{color:#d4af55}
+.eq-result{color:var(--green);font-weight:600;text-shadow:0 0 12px #72f59b40}
+.eq-note{font-size:10px;color:#7f9687}
+.eq-line.warn .eq-label,.eq-line.warn .eq-note{color:#d4af55}
+.eq-line.bad .eq-result{color:var(--red);text-shadow:none}
+@keyframes eqIn{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:none}}
+.math-table{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.math-cell{border:1px solid #24432e;background:#0d1b12;padding:6px 8px;text-align:center;font:10px/1.5 var(--mono);min-width:54px;opacity:0;animation:eqIn .35s ease forwards}
+.math-cell .from{display:block;color:#8da194}
+.math-cell .to{display:block;color:var(--green)}
+.math-cell .mid{display:block;color:#d4af55;font-size:9px}
+.final-state{margin-top:12px;border:1px solid #3f8a55;background:#102018;color:var(--green);padding:12px 14px;font:600 11px var(--mono);letter-spacing:1px;display:flex;align-items:center;gap:10px;animation:fadeIn .4s ease}
+.final-state.fail{border-color:#6e3034;background:#1a0e0f;color:var(--red)}
+
+/* Guide */
+.guide-more{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.guide-more summary{cursor:pointer;font:9px var(--mono);letter-spacing:.5px;color:var(--green);list-style:none}
+.guide-more summary::-webkit-details-marker{display:none}
+.guide-more summary:hover{color:#c5ffd4}
+.guide-more[open] summary{margin-bottom:10px}
+.guide-more h3{margin:16px 0 6px}
+.guide-list{margin:0;padding-left:16px;font-size:12px;line-height:1.8;color:#8fa394}
+.guide-card p b{color:var(--green);font-weight:500}
+
+@media(max-width:1300px){.algorithm-tab{flex:1 1 calc(50% - 5px);min-width:0}}
+@media(max-width:780px){.engine-chip{margin-left:0}.eq-label{width:100%;flex-basis:100%}}
+@media(max-width:480px){.pk-module .segmented .mode-button{padding:7px 8px}.pk-module .mode-row{gap:8px;flex-wrap:wrap}.walk-config>div{flex:1 1 100%}.walk-config .outline-button{width:100%}}
