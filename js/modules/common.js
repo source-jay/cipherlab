@@ -1,4 +1,4 @@
-/* CipherLab — shared helpers for the public-key modules (RSA / DSA) */
+/* CipherLab — shared helpers for the public-key module (RSA) */
 (() => {
   "use strict";
   const $ = (selector, root = document) => root.querySelector(selector);
@@ -12,10 +12,9 @@
   const titleEl = $("#simTitle"), subtitleEl = $("#simSubtitle");
   const original = {title: titleEl.innerHTML, subtitle: subtitleEl.textContent};
   const headings = {
-    rsa: {title: "RSA <span>ENCRYPTION</span> LAB", subtitle: "Encrypt with the public key. Decrypt with the private key. See the mathematics underneath."},
-    dsa: {title: "DSA <span>SIGNATURE</span> LAB", subtitle: "Sign with the private key. Verify with the public key. Prove who wrote the message."}
+    rsa: {title: "RSA <span>ENCRYPTION</span> LAB", subtitle: "Encrypt with the public key. Decrypt with the private key. See the mathematics underneath."}
   };
-  const modules = {rsa: $("#rsaModule"), dsa: $("#dsaModule")};
+  const modules = {rsa: $("#rsaModule")};
   const listeners = [];
 
   function showModule(name) {

@@ -271,5 +271,5 @@
 
   onModeChange("encrypt");
   buildWalkthrough();
-  if (!supported) fail("Web Crypto API unavailable — open CipherLab via http://localhost (npm start) or https.");
+  if (!supported) fail("Web Crypto API unavailable — open CipherLab from a local file, http://localhost or https.");
 })();

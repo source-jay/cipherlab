@@ -67,7 +67,6 @@
           <button class="algorithm-tab" data-algorithm="substitution"><span
               class="tab-symbol">⇄</span><span><b>SUBSTITUTION</b><small>MONOALPHABETIC CIPHER</small></span></button>
           <button class="algorithm-tab" data-module="rsa"><span class="tab-symbol">⚿</span><span><b>RSA</b><small>PUBLIC-KEY ENCRYPTION</small></span></button>
-          <button class="algorithm-tab" data-module="dsa"><span class="tab-symbol">✎</span><span><b>DSA</b><small>DIGITAL SIGNATURE</small></span></button>
         </div>
 
         <div id="classicalWorkspace">
@@ -289,138 +288,6 @@
             </div>
           </section>
         </div>
-
-        <!-- ============ DSA MODULE ============ -->
-        <div class="pk-module hidden" id="dsaModule">
-          <div class="pk-notice"><span class="notice-tag">DIGITAL SIGNATURE</span><span>DSA <b>signs and verifies</b> —
-              it does <b>not</b> encrypt. FIPS 186 DSA with SHA-256 via OpenSSL.</span><span class="engine-chip"
-              id="dsaEngine"><span class="status-dot"></span> ENGINE: CHECKING…</span></div>
-          <div class="workspace-grid">
-            <section class="panel input-panel">
-              <div class="panel-header">
-                <div><span class="panel-index">01</span>
-                  <h2>MESSAGE</h2>
-                </div><span class="panel-tag" id="dsaInputTag">DATA TO SIGN</span>
-              </div>
-              <label for="dsaMessage">MESSAGE CONTENT (UTF-8)</label>
-              <textarea id="dsaMessage" spellcheck="false"
-                placeholder="Enter the message to sign or verify...">TRANSFER 100 CREDITS TO ALICE</textarea>
-              <div class="input-meta"><span id="dsaCount">0 BYTES</span><button class="text-button"
-                  id="dsaClearInput">[ CLEAR ]</button></div>
-              <div class="mode-row">
-                <span class="field-label">OPERATION MODE</span>
-                <div class="segmented" id="dsaModeGroup">
-                  <button class="mode-button active" data-value="sign">SIGN</button>
-                  <button class="mode-button" data-value="verify">VERIFY</button>
-                </div>
-              </div>
-              <div class="hidden" id="dsaSignatureField">
-                <div class="key-action-row key-row"><label for="dsaSignature">SIGNATURE · BASE64 DER (r, s)</label></div>
-                <textarea id="dsaSignature" class="key-box" spellcheck="false"
-                  placeholder="Paste the Base64 signature to verify..."></textarea>
-              </div>
-              <div class="key-section">
-                <div class="panel-header compact">
-                  <div><span class="panel-index">02</span>
-                    <h2>KEY MANAGEMENT</h2>
-                  </div><span class="panel-tag">DSA KEY PAIR</span>
-                </div>
-                <div class="mode-row tight">
-                  <span class="field-label">PARAMETERS (L, N)</span>
-                  <div class="segmented" id="dsaParamGroup">
-                    <button class="mode-button" data-value="2048-224">2048/224</button>
-                    <button class="mode-button active" data-value="2048-256">2048/256</button>
-                    <button class="mode-button" data-value="3072-256">3072/256</button>
-                  </div>
-                </div>
-                <button class="outline-button wide-button" id="dsaGenerate">✎ GENERATE KEY PAIR</button>
-                <div class="key-action-row key-row"><label for="dsaPublicKey">PUBLIC KEY · SPKI / PEM (p, q, g,
-                    y)</label><button class="text-button" data-copy="dsaPublicKey">[ COPY ]</button></div>
-                <textarea id="dsaPublicKey" class="key-box" spellcheck="false"
-                  placeholder="Generate a key pair, or paste a PEM DSA public key."></textarea>
-                <div class="key-action-row key-row"><label for="dsaPrivateKey">PRIVATE KEY · PKCS#8 / PEM (x)</label><span><button
-                      class="text-button" data-reveal="dsaPrivateKey">[ REVEAL ]</button><button class="text-button"
-                      data-copy="dsaPrivateKey">[ COPY ]</button></span></div>
-                <textarea id="dsaPrivateKey" class="key-box masked" spellcheck="false"
-                  placeholder="Generate a key pair, or paste a PEM DSA private key."></textarea>
-                <div class="input-meta"><span id="dsaKeyStatus">NO KEY LOADED</span><button class="text-button"
-                    id="dsaReset">[ RESET MODULE ]</button></div>
-              </div>
-              <button class="primary-button" id="dsaRun"><span>▶</span> SIGN MESSAGE</button>
-              <div class="error-message" id="dsaError" role="alert"></div>
-            </section>
-
-            <section class="panel output-panel">
-              <div class="panel-header">
-                <div><span class="panel-index">03</span>
-                  <h2>OUTPUT BUFFER</h2>
-                </div><span class="panel-tag output-tag">RESULT</span>
-              </div>
-              <div class="output-placeholder" id="dsaPlaceholder">
-                <div class="placeholder-icon">⌁</div>
-                <b>AWAITING INPUT</b>
-                <span>Generate a key pair, then sign or verify a message.</span>
-              </div>
-              <div class="output-result hidden" id="dsaSignResult">
-                <div class="result-label">DIGITAL SIGNATURE · BASE64 DER</div>
-                <div class="result-text" id="dsaSignatureText"></div>
-                <div class="sig-components" id="dsaComponents"></div>
-                <div class="result-actions"><span id="dsaResultStats">0 BYTES</span><span class="action-group"><button
-                      class="outline-button" id="dsaUseSignature">⇄ SEND TO VERIFY</button><button class="outline-button"
-                      id="dsaCopySignature">▣ COPY SIGNATURE</button></span></div>
-              </div>
-              <div class="output-result hidden" id="dsaVerifyResult">
-                <div class="result-label">VERIFICATION RESULT</div>
-                <div class="verdict" id="dsaVerdict"></div>
-                <div class="sig-components" id="dsaVerifyDetails"></div>
-              </div>
-              <div class="output-divider"></div>
-              <div class="mini-terminal">
-                <div class="terminal-title"><span><i class="terminal-dot red"></i><i class="terminal-dot yellow"></i><i
-                      class="terminal-dot green-dot"></i> PROCESS LOG</span><span>LIVE</span></div>
-                <div class="terminal-lines" id="dsaLog">
-                  <p><span class="log-muted">[SYSTEM]</span> DSA module initialized.</p>
-                </div>
-              </div>
-            </section>
-          </div>
-
-          <section class="panel visualization-panel" id="dsaWalkthrough">
-            <div class="panel-header visualization-header">
-              <div><span class="panel-index">04</span>
-                <h2>DSA SIGNATURE WALKTHROUGH</h2>
-              </div>
-              <div class="visual-controls"><span class="panel-tag" data-role="counter">NO ACTIVE TRACE</span><button
-                  class="small-button" data-role="reset" disabled>↺ RESET</button></div>
-            </div>
-            <div class="edu-banner"><b>EDUCATIONAL MODEL</b> Toy domain parameters (p = 607, q = 101, g = 64) so every
-              number fits on screen. Real SHA-256 is used for the hash, then truncated to q's bit length. Separate from
-              the OpenSSL engine above.</div>
-            <div class="walk-config">
-              <div class="walk-grow"><label for="dsaToyMessage">MESSAGE TO SIGN</label><input id="dsaToyMessage"
-                  class="text-input plain" type="text" maxlength="60" value="HELLO CIPHERLAB" spellcheck="false"></div>
-              <div class="walk-grow"><label for="dsaToyVerify">MESSAGE RECEIVED (EDIT TO TAMPER)</label><input
-                  id="dsaToyVerify" class="text-input plain" type="text" maxlength="60" value="HELLO CIPHERLAB"
-                  spellcheck="false"></div>
-              <button class="outline-button" id="dsaToyBuild">▶ BUILD TRACE</button>
-            </div>
-            <div class="error-message" id="dsaToyError" role="alert"></div>
-            <div class="visual-content" data-role="stepper">
-              <div class="step-description"><span class="step-number" data-role="number">STEP 01</span>
-                <p data-role="desc">The walkthrough will appear here.</p>
-              </div>
-              <div class="visual-stage math-stage" data-role="stage"></div>
-              <div class="step-controls">
-                <button class="outline-button" data-role="prev" disabled>← PREVIOUS</button>
-                <div class="step-progress">
-                  <div class="progress-track"><span data-role="fill"></span></div><span data-role="text">0 / 0</span>
-                </div>
-                <button class="outline-button" data-role="next" disabled>NEXT STEP →</button>
-                <button class="play-button" data-role="play">▶ AUTO PLAY</button>
-              </div>
-            </div>
-          </section>
-        </div>
       </section>
 
       <section class="page-view" id="frequency-view">
@@ -540,48 +407,6 @@
                 encryption.</p>
             </details>
           </article>
-          <article class="panel guide-card"><span class="guide-symbol">✎</span>
-            <div class="eyebrow">DIGITAL SIGNATURE</div>
-            <h2>DSA (DIGITAL SIGNATURE ALGORITHM)</h2>
-            <p>A NIST standard (FIPS 186) for <b>signing</b> data, not encrypting it. A signature proves the message came
-              from the holder of the private key and has not been altered. Security relies on the discrete logarithm
-              problem in a prime-order subgroup.</p>
-            <div class="guide-code">SIGN: r = (gᵏ mod p) mod q &nbsp;·&nbsp; s = k⁻¹(H(m) + x·r) mod q<br>VERIFY: v = (g^u₁ ·
-              y^u₂ mod p) mod q &nbsp;→&nbsp; valid ⇔ v = r</div>
-            <h3>Key</h3>
-            <p>Domain parameters (p, q, g) are public. Private key x is random in [1, q−1]; public key y = gˣ mod p.</p>
-            <details class="guide-more">
-              <summary>[ EXPAND FULL BRIEFING ]</summary>
-              <h3>How it works</h3>
-              <p>The signer hashes the message, picks a fresh secret nonce k, and computes the pair (r, s). The verifier
-                uses only public values — p, q, g, y and the message hash — to recompute v. If v equals r, the signature
-                is valid.</p>
-              <h3>Key concepts</h3>
-              <ul class="guide-list">
-                <li>Discrete logarithm: given y = gˣ mod p, finding x is infeasible.</li>
-                <li>Hash function (SHA-256) — the signature covers the digest of the message.</li>
-                <li>Per-message nonce k must be secret, unpredictable and never reused.</li>
-              </ul>
-              <h3>Workflow</h3>
-              <div class="guide-code">SIGNER: message → SHA-256 → (r, s) with private x<br>VERIFIER: message + (r, s) +
-                public y → VALID / INVALID</div>
-              <h3>Advantages</h3>
-              <ul class="guide-list">
-                <li>Provides authenticity, integrity and non-repudiation.</li>
-                <li>Small signatures relative to the key size.</li>
-              </ul>
-              <h3>Limitations</h3>
-              <ul class="guide-list">
-                <li>Cannot encrypt data — signatures only.</li>
-                <li>Reusing or leaking k reveals the private key x.</li>
-                <li>Legacy: FIPS 186-5 (2023) no longer approves DSA for new signatures; ECDSA/EdDSA are preferred.</li>
-                <li>Not supported by the browser Web Crypto API.</li>
-              </ul>
-              <h3>Real-world applications</h3>
-              <p>Historically used in government systems, SSH (ssh-dss), PGP/GnuPG keys and software signing; today it
-                is mostly encountered when verifying older signatures.</p>
-            </details>
-          </article>
           <article class="panel guide-card full-guide">
             <div class="eyebrow">SECURITY NOTE</div>
             <h2>CLASSICAL CIPHERS ARE NOT SECURE BY MODERN STANDARDS</h2>
@@ -600,7 +425,6 @@
   <script src="js/script.js"></script>
   <script src="js/modules/common.js"></script>
   <script src="js/modules/rsa.js"></script>
-  <script src="js/modules/dsa.js"></script>
 </body>
 
 </html>

@@ -294,7 +294,7 @@
   $("#analyzeFrequency").addEventListener("click", analyzeFrequency);
   $("#clearHistory").addEventListener("click", () => { state.history = []; renderHistory(); toast("Session history cleared."); });
 
-  // Shared UI helpers for the public-key modules (RSA / DSA).
+  // Shared UI helpers for the public-key module (RSA).
   window.CipherLab = {
     escapeHTML, toast,
     addHistoryEntry(algorithm, mode, source, result) {
